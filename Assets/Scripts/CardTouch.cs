@@ -11,10 +11,11 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     Vector3 _startPosition;
     Vector3 _offsetToMouse;
     float _zDistanceToCamera;
+    Vector3 transformOfObject;
     // Use this for initialization
     void Start () {
-		
-	}
+        transformOfObject = transform.position;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -38,8 +39,10 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         _zDistanceToCamera = Mathf.Abs(_startPosition.z - Camera.main.transform.position.z);
 
         _offsetToMouse = _startPosition - Camera.main.ScreenToWorldPoint(
-            new Vector3(Input.mousePosition.x, Input.mousePosition.y, _zDistanceToCamera)
+            new Vector3(Input.mousePosition.x, transformOfObject.y, _zDistanceToCamera)
         );
+
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -48,7 +51,7 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             return;
 
         transform.position = Camera.main.ScreenToWorldPoint(
-            new Vector3(Input.mousePosition.x, Input.mousePosition.y, _zDistanceToCamera)
+            new Vector3(Input.mousePosition.x, 0, _zDistanceToCamera)
             ) + _offsetToMouse;
     }
 
