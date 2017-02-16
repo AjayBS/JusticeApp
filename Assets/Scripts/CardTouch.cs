@@ -10,17 +10,21 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     Vector3 _startPosition;
     Vector3 _offsetToMouse;
+    public Vector3 initialPosition;
     public GameObject targetRight;
     public GameObject targetLeft;
     float _zDistanceToCamera;
     Vector3 transformOfObject;
-    bool moveCardToRight = false;
-    bool moveCardToLeft = false;
-    GameObject eventSystem;
+    public bool moveCardToRight = false;
+    public bool moveCardToLeft = false;
+    public GameObject eventSystem;
     // Use this for initialization
     void Start () {
         transformOfObject = transform.position;
+        initialPosition = transform.position;
         eventSystem = GameObject.FindGameObjectWithTag("DragSystem");
+        targetLeft.transform.position = new Vector3(transform.position.x - 20, transform.position.y, transform.position.z);
+        targetRight.transform.position = new Vector3(transform.position.x + 20, transform.position.y, transform.position.z);//transform.position.x - 400;
     }
 	
 	// Update is called once per frame
@@ -31,20 +35,12 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             eventSystem.SetActive(false);
            // Debug.Log(GameObject.FindGameObjectWithTag("DragSystem").activeSelf);
         }
+  
         if (moveCardToLeft)
         { 
             transform.position = Vector2.MoveTowards(transform.position, targetLeft.transform.position, 10 * Time.deltaTime);
             eventSystem.SetActive(false);
         }
-    }
-
-    void OnMouseEnter()
-    {
-     
-    }
-
-    void OnMouseExit()
-    {
        
     }
 
@@ -53,10 +49,19 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         DraggedInstance = gameObject;
         _startPosition = transform.position;
         _zDistanceToCamera = Mathf.Abs(_startPosition.z - Camera.main.transform.position.z);
-
-        _offsetToMouse = _startPosition - Camera.main.ScreenToWorldPoint(
-            new Vector3(Input.mousePosition.x, transformOfObject.y, _zDistanceToCamera)
-        );
+        if (Input.touchCount > 1)
+        {
+            _offsetToMouse = _startPosition - Camera.main.ScreenToWorldPoint(
+          new Vector3(Input.GetTouch(0).position.x, transformOfObject.y, _zDistanceToCamera)
+      );
+        }
+        else
+        {
+            _offsetToMouse = _startPosition - Camera.main.ScreenToWorldPoint(
+           new Vector3(Input.mousePosition.x, transformOfObject.y, _zDistanceToCamera)
+       );
+        }
+           
 
         
     }
@@ -64,29 +69,54 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnDrag(PointerEventData eventData)
     {
         if (Input.touchCount > 1)
-            return;
+        {
+            transform.position = Camera.main.ScreenToWorldPoint(
+           new Vector3(Input.GetTouch(0).position.x, transformOfObject.y, _zDistanceToCamera)
+           ) + _offsetToMouse;
+            Debug.Log(transform.position.x);
+        }
+        else
+        {
+            transform.position = Camera.main.ScreenToWorldPoint(
+           new Vector3(Input.mousePosition.x, transformOfObject.y, _zDistanceToCamera)
+           ) + _offsetToMouse;
+            Debug.Log(transform.position.x);
+        }
 
-        transform.position = Camera.main.ScreenToWorldPoint(
-            new Vector3(Input.mousePosition.x, transformOfObject.y, _zDistanceToCamera)
-            ) + _offsetToMouse;
-
-        
 
         CheckCardPosition();
     }
 
     void CheckCardPosition()
     {
-        if(Input.mousePosition.x > 700 && moveCardToRight == false)
+        if (Input.touchCount > 1)
         {
-            Debug.Log("Moved right");
-            moveCardToRight = true;
+            if (transform.position.x > targetRight.transform.position.x - 18 && moveCardToRight == false)
+            {
+                //Debug.Log("Moved right");
+                moveCardToRight = true;
+            }
+            else if (transform.position.x < targetLeft.transform.position.x + 18 && moveCardToLeft == false)
+            {
+                //Debug.Log("Moved left");
+                moveCardToLeft = true;
+            }
         }
-        else if(Input.mousePosition.x < 300 && moveCardToLeft == false)
+        else
         {
-            Debug.Log("Moved left");
-            moveCardToLeft = true;
-        } 
+            Debug.Log(Input.mousePosition.x);
+            if (transform.position.x > targetRight.transform.position.x - 18 && moveCardToRight == false)
+            {
+                Debug.Log("Moved right");
+                moveCardToRight = true;
+            }
+            else if (transform.position.x < targetLeft.transform.position.x + 18 && moveCardToLeft == false)
+            {
+                Debug.Log("Moved left");
+                moveCardToLeft = true;
+            }
+        }
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)
