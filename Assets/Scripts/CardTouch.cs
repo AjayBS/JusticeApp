@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -18,11 +19,14 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public bool moveCardToRight = false;
     public bool moveCardToLeft = false;
     public GameObject eventSystem;
+    GameObject canvas;
+
     // Use this for initialization
     void Start () {
         transformOfObject = transform.position;
         initialPosition = transform.position;
         eventSystem = GameObject.FindGameObjectWithTag("DragSystem");
+        canvas = GameObject.FindGameObjectWithTag("CanvasInformation");
         targetLeft.transform.position = new Vector3(transform.position.x - 20, transform.position.y, transform.position.z);
         targetRight.transform.position = new Vector3(transform.position.x + 20, transform.position.y, transform.position.z);//transform.position.x - 400;
     }
@@ -33,15 +37,30 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         { 
             transform.position = Vector2.MoveTowards(transform.position, targetRight.transform.position, 10 * Time.deltaTime);
             eventSystem.SetActive(false);
-           // Debug.Log(GameObject.FindGameObjectWithTag("DragSystem").activeSelf);
+            StartCoroutine(DoFade());
+            
+            // Debug.Log(GameObject.FindGameObjectWithTag("DragSystem").activeSelf);
         }
   
         if (moveCardToLeft)
         { 
             transform.position = Vector2.MoveTowards(transform.position, targetLeft.transform.position, 10 * Time.deltaTime);
             eventSystem.SetActive(false);
+           
+            StartCoroutine(DoFade());
         }
        
+    }
+
+    IEnumerator DoFade()
+    {
+        while(canvas.GetComponent<CanvasGroup>().alpha > 0)
+        {
+            canvas.GetComponent<CanvasGroup>().alpha -= Time.deltaTime / 2;
+            yield return null;
+        }
+        canvas.GetComponent<CanvasGroup>().interactable = false;
+        yield return null;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -91,28 +110,32 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         if (Input.touchCount > 1)
         {
-            if (transform.position.x > targetRight.transform.position.x - 18 && moveCardToRight == false)
+            if (transform.position.x > targetRight.transform.position.x - 19 && moveCardToRight == false)
             {
                 //Debug.Log("Moved right");
+                GameObject.Find("StoreValues").GetComponent<StoreValue>().fullSentenceScore++;
                 moveCardToRight = true;
             }
-            else if (transform.position.x < targetLeft.transform.position.x + 18 && moveCardToLeft == false)
+            else if (transform.position.x < targetLeft.transform.position.x + 19 && moveCardToLeft == false)
             {
                 //Debug.Log("Moved left");
+                GameObject.Find("StoreValues").GetComponent<StoreValue>().halfSentenceScore++;
                 moveCardToLeft = true;
             }
         }
         else
         {
             Debug.Log(Input.mousePosition.x);
-            if (transform.position.x > targetRight.transform.position.x - 18 && moveCardToRight == false)
+            if (transform.position.x > targetRight.transform.position.x - 19 && moveCardToRight == false)
             {
                 Debug.Log("Moved right");
+                GameObject.Find("StoreValues").GetComponent<StoreValue>().fullSentenceScore++;
                 moveCardToRight = true;
             }
-            else if (transform.position.x < targetLeft.transform.position.x + 18 && moveCardToLeft == false)
+            else if (transform.position.x < targetLeft.transform.position.x + 19 && moveCardToLeft == false)
             {
                 Debug.Log("Moved left");
+                GameObject.Find("StoreValues").GetComponent<StoreValue>().halfSentenceScore++;
                 moveCardToLeft = true;
             }
         }

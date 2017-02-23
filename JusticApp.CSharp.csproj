@@ -75,8 +75,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DisplayScore.cs" />
     <Compile Include="Assets\Scripts\CardTouch.cs" />
-    <Compile Include="Assets\TargetReached.cs" />
+    <Compile Include="Assets\Scripts\TargetReached.cs" />
+    <Compile Include="Assets\StoreValue.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
