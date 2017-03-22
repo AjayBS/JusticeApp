@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: a49ec1714aa1758449adf3a6aa64fdfc
+timeCreated: 1489990183
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Aero Matics Light
+  fontNames:
+  - Aero Matics Light
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
