@@ -6,6 +6,7 @@ public class StoreValue : MonoBehaviour {
 
     public int fullSentenceScore = 0;
     public int halfSentenceScore = 0;
+    public List<int> arrayList;
     // Use this for initialization
     void Start () {
 		
