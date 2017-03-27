@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class TargetReached : MonoBehaviour {
 
-    public Text nameText;
-    public Text heightText;
-    public Text weightText;
-    public Text chargeText;
-    public Text descriptionText;
-    public Text historyText;
-    public Text currentStateText;
+    //public Text nameText;
+    //public Text heightText;
+    //public Text weightText;
+    //public Text chargeText;
+    //public Text descriptionText;
+    //public Text historyText;
+    //public Text currentStateText;
     GameObject canvas;
     static int i = 0;
     // Use this for initialization

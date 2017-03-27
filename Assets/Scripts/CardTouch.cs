@@ -92,14 +92,14 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             transform.position = Camera.main.ScreenToWorldPoint(
            new Vector3(Input.GetTouch(0).position.x, transformOfObject.y, _zDistanceToCamera)
            ) + _offsetToMouse;
-            Debug.Log(transform.position.x);
+          //  Debug.Log(transform.position.x);
         }
         else
         {
             transform.position = Camera.main.ScreenToWorldPoint(
            new Vector3(Input.mousePosition.x, transformOfObject.y, _zDistanceToCamera)
            ) + _offsetToMouse;
-            Debug.Log(transform.position.x);
+           // Debug.Log(transform.position.x);
         }
 
 
@@ -127,17 +127,17 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
         else
         {
-            Debug.Log(Input.mousePosition.x);
+           // Debug.Log(Input.mousePosition.x);
             if (transform.position.x > targetRight.transform.position.x - 19 && moveCardToRight == false)
             {
-                Debug.Log("Moved right");
+               // Debug.Log("Moved right");
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().fullSentenceScore++;
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().arrayList.Add(1);
                 moveCardToRight = true;
             }
             else if (transform.position.x < targetLeft.transform.position.x + 19 && moveCardToLeft == false)
             {
-                Debug.Log("Moved left");
+                //Debug.Log("Moved left");
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().halfSentenceScore++;
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().arrayList.Add(0);
                 moveCardToLeft = true;
