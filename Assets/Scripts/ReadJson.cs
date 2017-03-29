@@ -48,14 +48,6 @@ public class ReadJson : MonoBehaviour {
     // Use this for initialization
     void Start () {
         StartCoroutine(GetTextFromWWW());
-        GameObject.Find("MugShot").GetComponent<MeshRenderer>().enabled = true; //= new Vector3(1, 1, 1);
-        GameObject.Find("Info").GetComponent<MeshRenderer>().enabled = false;
-        GameObject.Find("Info").GetComponent<HorizontalLayoutGroup>().enabled = false;
-        //ReadDataFromSource();
-        // LoadData();
-        //GameObject.Find("")
-        // GameObject.Find("TargetLeft").transform.position = new Vector3(GameObject.Find("Mugshot").transform.position.x - 20, GameObject.Find("Mugshot").transform.position.y, GameObject.Find("Mugshot").transform.position.z);
-        // GameObject.Find("TargetRight").transform.position = new Vector3(GameObject.Find("Mugshot").transform.position.x + 20, GameObject.Find("Mugshot").transform.position.y, GameObject.Find("Mugshot").transform.position.z);
     }
 
     public void LoadData()

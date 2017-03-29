@@ -35,9 +35,8 @@ public class SwipeInput : MonoBehaviour
                         if (positionDelta.y > 0)
                         {
                             Debug.Log("UP SWIPE!!!");
-                            GameObject.Find("MugShot").GetComponent<MeshRenderer>().enabled = false; //= new Vector3(1, 1, 1);
-                            GameObject.Find("Info").GetComponent<MeshRenderer>().enabled = true;
-                            GameObject.Find("Info").GetComponent<HorizontalLayoutGroup>().enabled = true;
+                            mainCanvas.GetComponent<CanvasGroup>().alpha = 0;
+                            subCanvas.GetComponent<CanvasGroup>().alpha = 1;
                             //else
                             //{
                             //    mainCanvas.GetComponent<CanvasGroup>().alpha = 1;
@@ -47,9 +46,8 @@ public class SwipeInput : MonoBehaviour
                         else
                         {
                             Debug.Log("DOWN SWIPE!!!");
-                            GameObject.Find("MugShot").GetComponent<MeshRenderer>().enabled = true; //= new Vector3(1, 1, 1);
-                            GameObject.Find("Info").GetComponent<MeshRenderer>().enabled = false;
-                            GameObject.Find("Info").GetComponent<HorizontalLayoutGroup>().enabled = false;
+                            mainCanvas.GetComponent<CanvasGroup>().alpha = 1;
+                            subCanvas.GetComponent<CanvasGroup>().alpha = 0;
                         }
                     }
                     if (Mathf.Abs(positionDelta.x) > minimumSwipeDistanceX)
