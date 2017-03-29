@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Justice.unity
+- path: C:/Work/Part-Time/JusticeApp/JusticeApp/Assets/Scenes/Justice.unity
   isLoaded: 1
   isActive: 1
