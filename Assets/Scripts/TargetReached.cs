@@ -29,7 +29,7 @@ public class TargetReached : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.name == "MugShot")
+        if(other.gameObject.name == "MugShot" || other.gameObject.name == "Info")
         {
             Debug.Log("Collided");
             ResetPositionOfMugShot(other);
@@ -59,8 +59,12 @@ public class TargetReached : MonoBehaviour {
     private void ResetPositionOfMugShot(Collider2D other)
     {
         other.transform.position = other.GetComponent<CardTouch>().initialPosition;
+        GameObject.Find("MugShot").GetComponent<MeshRenderer>().enabled = true; //= new Vector3(1, 1, 1);
+        GameObject.Find("Info").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Info").GetComponent<HorizontalLayoutGroup>().enabled = false;
         other.GetComponent<CardTouch>().moveCardToRight = false;
         other.GetComponent<CardTouch>().moveCardToLeft = false;
         other.GetComponent<CardTouch>().eventSystem.SetActive(true);
+        
     }
 }

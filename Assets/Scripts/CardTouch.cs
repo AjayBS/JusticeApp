@@ -27,8 +27,8 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         initialPosition = transform.position;
         eventSystem = GameObject.FindGameObjectWithTag("DragSystem");
         canvas = GameObject.FindGameObjectWithTag("CanvasInformation");
-        targetLeft.transform.position = new Vector3(transform.position.x - 20, transform.position.y, transform.position.z);
-        targetRight.transform.position = new Vector3(transform.position.x + 20, transform.position.y, transform.position.z);//transform.position.x - 400;
+        //targetLeft.transform.position = new Vector3(transform.position.x - 20, transform.position.y, transform.position.z);
+        //targetRight.transform.position = new Vector3(transform.position.x + 20, transform.position.y, transform.position.z);//transform.position.x - 400;
     }
 	
 	// Update is called once per frame

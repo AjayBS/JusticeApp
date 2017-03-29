@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SwipeInput : MonoBehaviour
 {
@@ -34,20 +35,21 @@ public class SwipeInput : MonoBehaviour
                         if (positionDelta.y > 0)
                         {
                             Debug.Log("UP SWIPE!!!");
-                            if (mainCanvas.GetComponent<CanvasGroup>().alpha == 1)
-                            {
-                                mainCanvas.GetComponent<CanvasGroup>().alpha = 0;
-                                subCanvas.GetComponent<CanvasGroup>().alpha = 1;
-                            }
-                            else
-                            {
-                                mainCanvas.GetComponent<CanvasGroup>().alpha = 1;
-                                subCanvas.GetComponent<CanvasGroup>().alpha = 0;
-                            }
+                            GameObject.Find("MugShot").GetComponent<MeshRenderer>().enabled = false; //= new Vector3(1, 1, 1);
+                            GameObject.Find("Info").GetComponent<MeshRenderer>().enabled = true;
+                            GameObject.Find("Info").GetComponent<HorizontalLayoutGroup>().enabled = true;
+                            //else
+                            //{
+                            //    mainCanvas.GetComponent<CanvasGroup>().alpha = 1;
+                            //    subCanvas.GetComponent<CanvasGroup>().alpha = 0;
+                            //}
                         }
                         else
                         {
                             Debug.Log("DOWN SWIPE!!!");
+                            GameObject.Find("MugShot").GetComponent<MeshRenderer>().enabled = true; //= new Vector3(1, 1, 1);
+                            GameObject.Find("Info").GetComponent<MeshRenderer>().enabled = false;
+                            GameObject.Find("Info").GetComponent<HorizontalLayoutGroup>().enabled = false;
                         }
                     }
                     if (Mathf.Abs(positionDelta.x) > minimumSwipeDistanceX)

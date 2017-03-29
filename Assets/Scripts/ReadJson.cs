@@ -41,23 +41,30 @@ public class ReadJson : MonoBehaviour {
 
     public Text priorDrugOffenseValue;
     public Text priorSexOffenseValue;
+
+    public Text raceValue;
     static int index = 0;
 
     // Use this for initialization
     void Start () {
         StartCoroutine(GetTextFromWWW());
+        GameObject.Find("MugShot").GetComponent<MeshRenderer>().enabled = true; //= new Vector3(1, 1, 1);
+        GameObject.Find("Info").GetComponent<MeshRenderer>().enabled = false;
+        GameObject.Find("Info").GetComponent<HorizontalLayoutGroup>().enabled = false;
         //ReadDataFromSource();
-       // LoadData();
-        
+        // LoadData();
+        //GameObject.Find("")
+        // GameObject.Find("TargetLeft").transform.position = new Vector3(GameObject.Find("Mugshot").transform.position.x - 20, GameObject.Find("Mugshot").transform.position.y, GameObject.Find("Mugshot").transform.position.z);
+        // GameObject.Find("TargetRight").transform.position = new Vector3(GameObject.Find("Mugshot").transform.position.x + 20, GameObject.Find("Mugshot").transform.position.y, GameObject.Find("Mugshot").transform.position.z);
     }
 
     public void LoadData()
-    {
-      
+    {      
             Debug.Log(jsonString);
             if(index < itemData["profiles"].Count)
             {
             priorFeloniesValue.text = "N/A";
+            raceValue.text = "N/A";
             priorSexOffenseValue.text = "N/A";
             citizenshipValue.text = "N/A";
             birthValue.text = "N/A";
@@ -75,72 +82,76 @@ public class ReadJson : MonoBehaviour {
             priorFeloniesValue.text = "N/A";
             priorSexOffenseValue.text = "N/A";
 
-            IDictionary tdictionary = itemData as IDictionary;
-            if(tdictionary.Contains("Prior felonies"))
+            //  IDictionary tdictionary = jsonString as IDictionary;
+            if (jsonString.Contains("Race"))
+            {
+                raceValue.text = itemData["profiles"][index]["Race"].ToString();
+            }
+            if (jsonString.Contains("Prior felonies"))
             {
                 priorFeloniesValue.text = itemData["profiles"][index]["Prior felonies"].ToString();
             }
-            else if (tdictionary.Contains("Prior sex offenses"))
+            if (jsonString.Contains("Prior sex offenses"))
             {
                 priorSexOffenseValue.text = itemData["profiles"][index]["Prior sex offenses"].ToString();
             }
-            else if(tdictionary.Contains("Citizenship"))
+           if(jsonString.Contains("Citizenship"))
             {
                 citizenshipValue.text = itemData["profiles"][index]["Citizenship"].ToString();
             }
-            else if(tdictionary.Contains("Date of Birth"))
+            if(jsonString.Contains("Date of Birth"))
             {
                 birthValue.text = itemData["profiles"][index]["Date of Birth"].ToString();
             }
-            else if (tdictionary.Contains("Zipcode"))
+            if (jsonString.Contains("Zipcode"))
             {
                 zipCodeValue.text = itemData["profiles"][index]["Zipcode"].ToString();
             }
-            else if (tdictionary.Contains("Zipcode"))
+            if (jsonString.Contains("Zipcode"))
             {
                 zipCodeValue.text = itemData["profiles"][index]["Zipcode"].ToString();
             }
-            else if(tdictionary.Contains("Marital Status"))
+            if(jsonString.Contains("Marital Status"))
             {
                 zipCodeValue.text = itemData["profiles"][index]["Marital Status"].ToString(); 
             }
-            else if(tdictionary.Contains("Race"))
+            if(jsonString.Contains("Race"))
             {
                 //race.text = itemData["profiles"][index]["Race"].ToString();
             }
-            else if (tdictionary.Contains("Offense"))
+            if (jsonString.Contains("Offense"))
             {
                 offenseValue.text = itemData["profiles"][index]["Offense"].ToString();
             }
-            else if(tdictionary.Contains("Prior drug offense"))
+            if(jsonString.Contains("Prior drug offense"))
             {
                 priorDrugOffenseValue.text = itemData["profiles"][index]["Prior drug offense"].ToString();
             }
-            else if (tdictionary.Contains("Education"))
+            if (jsonString.Contains("Education"))
             {
                 educationValue.text = itemData["profiles"][index]["Education"].ToString();
             }
-            else if (tdictionary.Contains("Education"))
+            if (jsonString.Contains("Education"))
             {
                 educationValue.text = itemData["profiles"][index]["Education"].ToString();
             }
-            else if (tdictionary.Contains("Employment"))
+            if (jsonString.Contains("Employment"))
             {
                 employmentValue.text = itemData["profiles"][index]["Employment"].ToString();
             }
-            else if (tdictionary.Contains("Prior violent felonies"))
+            if (jsonString.Contains("Prior violent felonies"))
             {
                 priorViolentFeloniesValue.text = itemData["profiles"][index]["Prior violent felonies"].ToString();
             }
-            else if (tdictionary.Contains("Prior violent felonies"))
+            if (jsonString.Contains("Prior violent felonies"))
             {
                 priorViolentFeloniesValue.text = itemData["profiles"][index]["Prior violent felonies"].ToString();
             }
-            else if (tdictionary.Contains("Prior felonies"))
+            if (jsonString.Contains("Prior felonies"))
             {
                 priorFeloniesValue.text = itemData["profiles"][index]["Prior felonies"].ToString();
             }
-            else if (tdictionary.Contains("Prior sex offenses"))
+            if (jsonString.Contains("Prior sex offenses"))
             {
                 priorSexOffenseValue.text = itemData["profiles"][index]["Prior sex offenses"].ToString();
             }
