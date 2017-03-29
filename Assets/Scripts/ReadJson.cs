@@ -74,7 +74,19 @@ public class ReadJson : MonoBehaviour {
             priorFeloniesValue.text = "N/A";
             priorSexOffenseValue.text = "N/A";
 
-            //  IDictionary tdictionary = jsonString as IDictionary;
+            if (jsonString.Contains("File Name"))
+            {
+                string fileName = itemData["profiles"][index]["File Name"].ToString();
+                int fileExtPos = fileName.LastIndexOf(".");
+                if (fileExtPos >= 0)
+                    fileName = fileName.Substring(0, fileExtPos);
+                // SpriteRenderer sr = GameObject.Find("MugShot").GetComponent<SpriteRenderer>();
+                GameObject.Find("MugShot").GetComponent<Image>().overrideSprite = Resources.Load<Sprite>(fileName); //Your sprite
+               // Debug.Log(itemData["profiles"][index]["File Name"].ToString());
+              // sr.sprite = Resources.Load<Sprite>(fileName);
+            }
+
+                //  IDictionary tdictionary = jsonString as IDictionary;
             if (jsonString.Contains("Race"))
             {
                 raceValue.text = itemData["profiles"][index]["Race"].ToString();
@@ -153,10 +165,17 @@ public class ReadJson : MonoBehaviour {
             }
             else
             {
-           
-           // Debug.Log(url);
-            // StartCoroutine(GetTextFromWWW());
-            SceneManager.LoadScene("FinalScene");
+
+            int roundNo = ++GameObject.Find("StoreValues").GetComponent<StoreValue>().currentRound;
+            int[] list = GameObject.Find("StoreValues").GetComponent<StoreValue>().arrayList.ToArray();
+            string arrayString = "[" + string.Join(",", list.Select(x => x.ToString()).ToArray()) + "]";
+
+
+            GameObject.Find("StoreValues").GetComponent<StoreValue>().url = "http://logandanielcox.me/round" + roundNo + "/" + GameObject.Find("StoreValues").GetComponent<StoreValue>().id + "," + arrayString;
+            GameObject.Find("StoreValues").GetComponent<StoreValue>().arrayList.Clear();
+            index = 0;
+
+            StartCoroutine(GetTextFromWWW());
         }
           
             //if (i == 0)
@@ -244,7 +263,7 @@ public class ReadJson : MonoBehaviour {
         //jsonString = jsonString.Trim('"');
         
         itemData = JsonMapper.ToObject(jsonString);
-        Debug.Log(itemData["profiles"][0]["Citizenship"]);
+        //Debug.Log(itemData["profiles"][0]["Citizenship"]);
         index = 0;
 
         if(GameObject.Find("StoreValues").GetComponent<StoreValue>().currentRound == 1)

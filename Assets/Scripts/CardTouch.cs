@@ -112,14 +112,14 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         if (Input.touchCount > 1)
         {
             Debug.Log(transform.position);
-            if (transform.position.x > targetRight.transform.position.x - 19 && moveCardToRight == false)
+            if (transform.position.x > targetRight.transform.position.x - 20 && moveCardToRight == false)
             {
                 //Debug.Log("Moved right");
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().fullSentenceScore++;
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().arrayList.Add(1);
                 moveCardToRight = true;
             }
-            else if (transform.position.x < targetLeft.transform.position.x + 19 && moveCardToLeft == false)
+            else if (transform.position.x < targetLeft.transform.position.x + 20 && moveCardToLeft == false)
             {
                 //Debug.Log("Moved left");
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().halfSentenceScore++;
@@ -130,14 +130,14 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         else
         {
            // Debug.Log(Input.mousePosition.x);
-            if (transform.position.x > targetRight.transform.position.x - 19 && moveCardToRight == false)
+            if (transform.position.x > targetRight.transform.position.x - 20 && moveCardToRight == false)
             {
                 Debug.Log("Moved right");
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().fullSentenceScore++;
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().arrayList.Add(1);
                 moveCardToRight = true;
             }
-            else if (transform.position.x < targetLeft.transform.position.x + 19 && moveCardToLeft == false)
+            else if (transform.position.x < targetLeft.transform.position.x + 20 && moveCardToLeft == false)
             {
                 //Debug.Log("Moved left");
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().halfSentenceScore++;
