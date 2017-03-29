@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class SwipeInput : MonoBehaviour
 {
-    [SerializeField]
-    private float minimumSwipeDistanceY;
-    [SerializeField]
-    private float minimumSwipeDistanceX;
+    public float minimumSwipeDistanceY;
+    public float minimumSwipeDistanceX;
 
     public GameObject mainCanvas;
     public GameObject subCanvas;
