@@ -58,7 +58,7 @@ public class TargetReached : MonoBehaviour {
 
     private void ResetPositionOfMugShot(Collider2D other)
     {
-        other.transform.position = other.GetComponent<CardTouch>().initialPosition;
+        other.transform.position =  other.GetComponent<CardTouch>().initialPosition;
         GameObject.Find("MainCanvas").GetComponent<CanvasGroup>().alpha = 1;
         GameObject.Find("Info").GetComponent<CanvasGroup>().alpha = 0;
         other.GetComponent<CardTouch>().moveCardToRight = false;

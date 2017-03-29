@@ -25,6 +25,7 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     void Start () {
         transformOfObject = transform.position;
         initialPosition = transform.position;
+      // initialPosition Camera.main.ScreenToWorldPoint(transform.position);
         eventSystem = GameObject.FindGameObjectWithTag("DragSystem");
         canvas = GameObject.FindGameObjectWithTag("CanvasInformation");
         //targetLeft.transform.position = new Vector3(transform.position.x - 20, transform.position.y, transform.position.z);

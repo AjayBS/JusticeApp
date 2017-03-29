@@ -240,15 +240,16 @@ public class ReadJson : MonoBehaviour {
         {
             jsonString = www.text;
         }
-        jsonString = jsonString.Replace(@"\", string.Empty);
-        jsonString = jsonString.Trim('"');
+        //jsonString = jsonString.Replace(@"\", string.Empty);
+        //jsonString = jsonString.Trim('"');
         
         itemData = JsonMapper.ToObject(jsonString);
+        Debug.Log(itemData["profiles"][0]["Citizenship"]);
         index = 0;
 
         if(GameObject.Find("StoreValues").GetComponent<StoreValue>().currentRound == 1)
         {
-            GameObject.Find("StoreValues").GetComponent<StoreValue>().id = itemData["id"]["$oid"].ToString();
+            GameObject.Find("StoreValues").GetComponent<StoreValue>().id = itemData["id"].ToString();
         }
 
         LoadData();
