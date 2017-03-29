@@ -23,11 +23,20 @@ public class ReadJson : MonoBehaviour {
     //public Text descriptionText;
     //public Text historyText;
     //public Text currentStateText;
+    public Text field1Label;
+    public Text field1Value;
 
-    public Text offenceValue;
-    public Text DOBValue;
-    public Text genderValue;
-    public Text raceValue;
+    public Text field2Label;
+    public Text field2Value;
+
+    public Text field3Label;
+    public Text field3Value;
+
+    public Text field4Label;
+    public Text field4Value;
+
+    public Text field5Label;
+    public Text field5Value;
     static int index = 0;
 
     // Use this for initialization
@@ -41,25 +50,27 @@ public class ReadJson : MonoBehaviour {
     public void LoadData()
     {
       
-            Debug.Log(itemData["profiles"].Count);
+            Debug.Log(jsonString);
             if(index < itemData["profiles"].Count)
             {
-            DOBValue.text = itemData["profiles"][index]["Date of Birth"].ToString();
-            genderValue.text = itemData["profiles"][index]["Gender"].ToString();
-            raceValue.text = itemData["profiles"][index]["Race"].ToString();
-            offenceValue.text = itemData["profiles"][index]["Offense"].ToString();
+            IDictionary tdictionary = itemData as IDictionary;
+            if(tdictionary.Contains("Data of Birth"))
+            {
+
+            }
+            //DOBValue.text = itemData["profiles"][index]["Date of Birth"].ToString();
+            //genderValue.text = itemData["profiles"][index]["Gender"].ToString();
+            //raceValue.text = itemData["profiles"][index]["Race"].ToString();
+            //offenceValue.text = itemData["profiles"][index]["Offense"].ToString();
             index++;
             }
             else
             {
-            int[] list = GameObject.Find("StoreValues").GetComponent<StoreValue>().arrayList.ToArray();
-            string arrayString = "[" + string.Join(",", list.Select(x => x.ToString()).ToArray()) + "]";
-          
-            
-            url = "http://logandanielcox.me/round2/" + itemData["id"]["$oid"].ToString() + "," + arrayString;
-            Debug.Log(url);
-            StartCoroutine(GetTextFromWWW());
-            }
+           
+           // Debug.Log(url);
+            // StartCoroutine(GetTextFromWWW());
+            SceneManager.LoadScene("FinalScene");
+        }
           
             //if (i == 0)
             //{
@@ -127,7 +138,10 @@ public class ReadJson : MonoBehaviour {
 
     IEnumerator GetTextFromWWW()
     {
-        WWW www = new WWW(url);
+
+        Debug.Log(GameObject.Find("StoreValues").GetComponent<StoreValue>().url+" is the url");
+       // GameObject.Find("StoreValues").GetComponent<StoreValue>().url = ;
+        WWW www = new WWW(GameObject.Find("StoreValues").GetComponent<StoreValue>().url);
 
         yield return www;
 
@@ -144,6 +158,12 @@ public class ReadJson : MonoBehaviour {
         
         itemData = JsonMapper.ToObject(jsonString);
         index = 0;
+
+        if(GameObject.Find("StoreValues").GetComponent<StoreValue>().currentRound == 1)
+        {
+            GameObject.Find("StoreValues").GetComponent<StoreValue>().id = itemData["id"]["$oid"].ToString();
+        }
+
         LoadData();
 
         

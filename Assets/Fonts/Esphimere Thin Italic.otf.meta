@@ -1,0 +1,32 @@
+fileFormatVersion: 2
+guid: f92174cd0199c1d49ac3172579f80523
+timeCreated: 1490257882
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Esphimere
+  fontNames:
+  - Esphimere
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 25a8abb0a854b514aa5823dee0f32a9d, type: 3}
+  - {fileID: 12800000, guid: db73d501ffed2ce4aab5e7a3f2bc41e6, type: 3}
+  - {fileID: 12800000, guid: 718f81932b3b0244fa50ca43a1cd6c14, type: 3}
+  - {fileID: 12800000, guid: 1d52a35545e126d409a38d0d2f4cee80, type: 3}
+  - {fileID: 12800000, guid: 090b98b9f4ab45449a89b2846b3f2c5a, type: 3}
+  - {fileID: 12800000, guid: 1b011f3a9bc130c498dde6e9576bfb03, type: 3}
+  - {fileID: 12800000, guid: 84ea9eea3cd46ff4db9730702c284e3e, type: 3}
+  - {fileID: 12800000, guid: c250f99cbace6574093f28fd70211417, type: 3}
+  - {fileID: 12800000, guid: 0e69472f4eb9c8941981499d56502af4, type: 3}
+  - {fileID: 12800000, guid: f0904d7f421c56f49ae1895819932726, type: 3}
+  - {fileID: 12800000, guid: 63c101bfc9ee53d46a9cc39a47c6a7be, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
