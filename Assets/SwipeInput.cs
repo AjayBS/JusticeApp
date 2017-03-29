@@ -10,8 +10,8 @@ public class SwipeInput : MonoBehaviour
     [SerializeField]
     private float minimumSwipeDistanceX;
 
-    public Canvas mainCanvas;
-    public Canvas subCanvas;
+    public GameObject mainCanvas;
+    public GameObject subCanvas;
 
     private Touch t = default(Touch);
     private Vector3 startPosition = Vector3.zero;
@@ -37,6 +37,8 @@ public class SwipeInput : MonoBehaviour
                             Debug.Log("UP SWIPE!!!");
                             mainCanvas.GetComponent<CanvasGroup>().alpha = 0;
                             subCanvas.GetComponent<CanvasGroup>().alpha = 1;
+                            
+                            mainCanvas.GetComponent<VerticalLayoutGroup>().enabled = false;
                             //else
                             //{
                             //    mainCanvas.GetComponent<CanvasGroup>().alpha = 1;
@@ -48,6 +50,7 @@ public class SwipeInput : MonoBehaviour
                             Debug.Log("DOWN SWIPE!!!");
                             mainCanvas.GetComponent<CanvasGroup>().alpha = 1;
                             subCanvas.GetComponent<CanvasGroup>().alpha = 0;
+                            mainCanvas.GetComponent<VerticalLayoutGroup>().enabled = true;
                         }
                     }
                     if (Mathf.Abs(positionDelta.x) > minimumSwipeDistanceX)

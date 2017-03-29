@@ -132,7 +132,7 @@ public class CardTouch : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
            // Debug.Log(Input.mousePosition.x);
             if (transform.position.x > targetRight.transform.position.x - 19 && moveCardToRight == false)
             {
-               // Debug.Log("Moved right");
+                Debug.Log("Moved right");
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().fullSentenceScore++;
                 GameObject.Find("StoreValues").GetComponent<StoreValue>().arrayList.Add(1);
                 moveCardToRight = true;
